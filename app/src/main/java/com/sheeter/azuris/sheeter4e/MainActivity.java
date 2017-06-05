@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             factory = XmlPullParserFactory.newInstance();
             XmlPullParser xpp = factory.newPullParser();
 
-            File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Documents/Grigle Groogle.dnd4e");
+            File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Documents/Jak.dnd4e");
             BOMInputStream fin = new BOMInputStream(new FileInputStream(file));
             String contents = convertStreamToString(fin);
             fin.close();
@@ -283,6 +283,31 @@ public class MainActivity extends AppCompatActivity {
 
     private void StatParse(XmlPullParser xpp, D20Character character) {
         // TODO: parse each stat
+        String statName = xpp.getAttributeValue(0);
+
+        switch (statName){
+            case "Strength":
+                mCharacter.sheet.abilityScores.setStrength(Integer.parseInt(xpp.getAttributeValue(1).trim()));
+                break;
+            case "Constitution":
+                mCharacter.sheet.abilityScores.setConstitution(Integer.parseInt(xpp.getAttributeValue(1).trim()));
+                break;
+            case "Dexterity":
+                mCharacter.sheet.abilityScores.setDexterity(Integer.parseInt(xpp.getAttributeValue(1).trim()));
+                break;
+            case "Intelligence":
+                mCharacter.sheet.abilityScores.setIntelligence(Integer.parseInt(xpp.getAttributeValue(1).trim()));
+                break;
+            case "Wisdom":
+                mCharacter.sheet.abilityScores.setWisdom(Integer.parseInt(xpp.getAttributeValue(1).trim()));
+                break;
+            case "Charisma":
+                mCharacter.sheet.abilityScores.setCharisma(Integer.parseInt(xpp.getAttributeValue(1).trim()));
+                break;
+            default:
+                ;
+        }
+        int a = 123;
     }
 
     public static String convertStreamToString(InputStream is) throws Exception {
